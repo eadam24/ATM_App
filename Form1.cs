@@ -16,11 +16,10 @@ namespace ATM_App
 
         private void withdraw_button_Click(object sender, EventArgs e)
         {
+         
+            _error = false;
             amount_error.SetError(user_amount, "");
             pin_error.SetError(user_pin, "");
-            _error = false;
-
-
 
 
 
@@ -29,14 +28,12 @@ namespace ATM_App
                 amount_error.SetError(user_amount, "Empty amount!");
                 _error = true;
             }
-            else if (!IsDigitsOnly(user_pin.Text)) 
+            else if (!IsDigitsOnly(user_amount.Text)) 
             { 
-                pin_error.SetError(user_pin, "Pin has text!");
+                pin_error.SetError(user_amount, "Amount has text!");
                 _error = true;
             }
             
-          
-
 
             if (user_pin.Text == String.Empty)
             {
@@ -49,7 +46,11 @@ namespace ATM_App
                 pin_error.SetError(user_pin, "PIN should be 4 numbers!");
                 _error = true;
             }
-            
+            else if (!IsDigitsOnly(user_pin.Text))
+            {
+                pin_error.SetError(user_pin, "Pin has text!");
+                _error = true;
+            }
 
 
 
